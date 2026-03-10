@@ -7,7 +7,7 @@ Pulls data from the [GitHub Copilot Metrics API](https://docs.github.com/en/rest
 ## Install
 
 ```sh
-pip install git+https://github.com/olruss/copilot-usage.git
+uv tool install git+https://github.com/olruss/copilot-usage.git
 ```
 
 Or install locally in development mode:
@@ -15,13 +15,13 @@ Or install locally in development mode:
 ```sh
 git clone https://github.com/olruss/copilot-usage.git
 cd copilot-usage
-pip install -e .
+uv sync
 ```
 
-You can also use [pipx](https://pipx.pypa.io/) for an isolated install:
+To run locally without installing:
 
 ```sh
-pipx install git+https://github.com/olruss/copilot-usage.git
+uv run copilot-usage --help
 ```
 
 ## Authentication
