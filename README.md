@@ -7,15 +7,21 @@ Pulls data from the [GitHub Copilot Metrics API](https://docs.github.com/en/rest
 ## Install
 
 ```sh
-go install github.com/olruss/copilot-usage@latest
+pip install git+https://github.com/olruss/copilot-usage.git
 ```
 
-Or build from source:
+Or install locally in development mode:
 
 ```sh
 git clone https://github.com/olruss/copilot-usage.git
 cd copilot-usage
-go build -o copilot-usage .
+pip install -e .
+```
+
+You can also use [pipx](https://pipx.pypa.io/) for an isolated install:
+
+```sh
+pipx install git+https://github.com/olruss/copilot-usage.git
 ```
 
 ## Authentication
@@ -78,7 +84,7 @@ copilot-usage daily -o my-org -p week
 
 ### `languages`
 
-Top programming languages sorted by acceptances, with a table and an ASCII bar chart.
+Top programming languages sorted by acceptances, with a table and a bar chart.
 
 ```sh
 copilot-usage languages -o my-org
@@ -126,22 +132,7 @@ copilot-usage summary -o my-org --json | jq .
 copilot-usage summary -o my-org --json | jq '.acceptance_rate'
 
 # Get top 5 languages as TSV
-copilot-usage languages -o my-org --json | jq -r '.[:5][] | [.Name, .Acceptances] | @tsv'
-```
-
-## Cross-Platform
-
-Single binary, no runtime dependencies. Build for any platform:
-
-```sh
-# Linux
-GOOS=linux GOARCH=amd64 go build -o copilot-usage .
-
-# Windows
-GOOS=windows GOARCH=amd64 go build -o copilot-usage.exe .
-
-# macOS (Apple Silicon)
-GOOS=darwin GOARCH=arm64 go build -o copilot-usage .
+copilot-usage languages -o my-org --json | jq -r '.[:5][] | [.name, .acceptances] | @tsv'
 ```
 
 ## API Limitations
